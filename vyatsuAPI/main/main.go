@@ -10,6 +10,8 @@ import (
 	"vyatsuAPIInventory/vyatsuAPI/repository"
 )
 
+const connectionURL = "postgres://tgbot:pass@localhost:5432/vyatsu"
+
 // @title Vyatsu
 // @host localhost:8080
 // @version 1.0
@@ -28,7 +30,7 @@ func main() {
 // @Produce json
 // @Success 200
 func getEmployees(e echo.Context) error {
-	db, err := repository.New("postgres://tgbot:pass@localhost:5432/vyatsu")
+	db, err := repository.New(connectionURL)
 	offset, err := strconv.Atoi(e.QueryParam("offset"))
 	limit, err := strconv.Atoi(e.QueryParam("limit"))
 	position := e.QueryParam("position")
